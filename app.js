@@ -13,6 +13,8 @@ const connectDB = require('./db/connect')
 const tasks = require('./routes/tasks')
 
 // middleware
+const notFound = require('./middleware/not-found')
+
 app.use(express.static('./public'))
 app.use(express.json())
 
@@ -23,6 +25,8 @@ app.use(express.json())
 // app.delete('/api/v1/tasks/:id')  - delete task
 
 app.use('/api/v1/tasks', tasks)
+
+app.use(notFound)
 
 const port = process.env.PORT || 3000
 
